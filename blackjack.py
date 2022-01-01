@@ -43,13 +43,3 @@ while running:
         else:
             gameStarted = False
             cards = []
-    
-    
-        
-        
-
-
-
-
-
-
