@@ -4,22 +4,28 @@ def cardDealer():
     num = random.randint(1, 13)
     return num
 
-print("Hello, welcome to my Blackjack game!")
+cards = []
+gameStarted = False
 
-cardAmount = 0
 
-print(f"You're number is currently {cardAmount}")
+print("Hello, welcome to my Blackjack game!") 
 
 running = True
 while running:
-    if cardAmount < 21:
+    if gameStarted == False:
+        cards.append(cardDealer())
+        cards.append(cardDealer()) 
+        gameStarted = True
+    print(f"You're cards are {cards}. Your sum is {sum(cards)}")
+    
+    if sum(cards) < 21:
         print("Do you want to hit? Y/N")
         a = input()
         if a.lower() == 'y':
-            cardAmount += cardDealer()
-            print(f"Your current amount is {cardAmount}")
-    elif cardAmount == 21:
-        print(f"Card amount is {cardAmount}")
+            cards.append(cardDealer())
+            print(f"Your cards are {cards}.Your current amount is {sum(cards)}")
+    elif sum(cards) == 21:
+        print(f"Your cards are {cards}.Card amount is {sum(cards)}")
         print("You Win Congratulations!")
         
         print("Do you want to play again? Y/N")
@@ -27,13 +33,16 @@ while running:
         if response.lower() == "n":
             running = False
     else:
-        print(f"Card amount is {cardAmount}")
+        print(f"Your cards are {cards},Card amount is {sum(cards)}")
         print("You lose, sad!")
         
         print("Do you want to play again? Y/N")
         response = input()
         if response.lower() == "n":
             running = False
+        else:
+            gameStarted = False
+            cards = []
     
     
         
